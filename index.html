@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Reproductor</title>
 	<style>
-		#myProgress {
+		/*#myProgress {
 		    width: 100%;
 		    background-color: grey;
 		}
@@ -12,20 +12,20 @@
 		    width: 1%;
 		    height: 30px;
 		    background-color: green;
-		}
+		}*/
 	</style>
 </head>
 <body>
-	<audio id="reproductor">
+	<audio id="reproductor" ontimeupdate="mostrar()">
 		<source src="audio.mp3" type="audio/mpeg">
 	</audio>
-	<div id="myProgress">
+	<!--<div id="myProgress">
 		<div id="myBar"></div>
 	</div>
 	<br><br>
 	<progress value="0" max="100" id="barra"> </progress>
 	<button type="button" id="cargar" onclick="setInterval("cargar()",1)" >Barra</button>	
-	
+	-->
 	<button onclick="play()">Play</button>
 	<button onclick="pause()">Pause</button>
 	<button onclick="stop()">Stop</button>
@@ -33,14 +33,25 @@
 	<button onclick="subirVolumen()">Subir</button>
 	<button onclick="adelantar()">Adelantar</button>
 	<button onclick="retrasar()">Retrasar</button>
-	<button onclick="move()">Click Me</button> 	
+	<button onclick="move()">Click Me</button> 
+	<progress id="progressBar" value="0" max="200"></progress>
+	<!-- <input id="rango" type="range" min="0" max="175" value="0"> -->
 	
 	<script>
+
+		function mostrar(){
+			// var player = document.getElementById("reproductor");
+			// var rango = document.getElementById("rango");
+			// rango.value = parseInt(player.currentTime);
+			var player = document.getElementById("reproductor")
+			var progressBar = document.getElementById("progressBar")
+			progressBar.value = player.currentTime
+			progressBar.max = player.duration
+		}
+
 		function play(){
 			var player = document.getElementById("reproductor");
 			player.play();
-			player.duration
-			console.log(player.duration);
 		}
 		function pause(){
 			var player = document.getElementById("reproductor");
@@ -74,7 +85,7 @@
 		    var player = document.getElementById("reproductor");
 		    player.controls = true;
 		    player.load();
-		}*/ 
+		}
 		
 		function move() {
 		    var elem = document.getElementById("myBar"); 
@@ -91,9 +102,8 @@
 		}
 		function cargar(){
 			var barra = document.getElementById("barra");
-			barra.value +=1
-
-		}
+			barra.value +=1;
+		}*/
 
 	</script>
 	
