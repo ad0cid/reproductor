@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Reproductor</title>
+	<style>
+		#myProgress {
+		    width: 100%;
+		    background-color: grey;
+		}
+		#myBar {
+		    width: 1%;
+		    height: 30px;
+		    background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<audio id="reproductor">
+		<source src="audio.mp3" type="audio/mpeg">
+	</audio>
+	<div id="myProgress">
+		<div id="myBar"></div>
+	</div>
+	<br><br>
+	<progress value="0" max="100" id="barra"> </progress>
+	<button type="button" id="cargar" onclick="setInterval("cargar()",1)" >Barra</button>	
+	
+	<button onclick="play()">Play</button>
+	<button onclick="pause()">Pause</button>
+	<button onclick="stop()">Stop</button>
+	<button onclick="bajarVolumen()">Bajar</button>
+	<button onclick="subirVolumen()">Subir</button>
+	<button onclick="adelantar()">Adelantar</button>
+	<button onclick="retrasar()">Retrasar</button>
+	<button onclick="move()">Click Me</button> 	
+	
+	<script>
+		function play(){
+			var player = document.getElementById("reproductor");
+			player.play();
+			player.duration
+			console.log(player.duration);
+		}
+		function pause(){
+			var player = document.getElementById("reproductor");
+			player.pause();
+		}
+		function stop(){
+			var player = document.getElementById("reproductor");
+			player.load();
+		}
+		function bajarVolumen(){
+			var player = document.getElementById("reproductor");
+			player.volume = player.volume-.1;
+			console.log(player.volume);
+		}
+		function subirVolumen(){
+			var player = document.getElementById("reproductor");
+			player.volume = player.volume+.1;
+			console.log(player.volume);
+		}
+		function adelantar(){
+			var player = document.getElementById("reproductor");
+			player.currentTime = player.currentTime+5;
+			console.log(player.currentTime);
+		}
+		function retrasar(){
+			var player = document.getElementById("reproductor");
+			player.currentTime = player.currentTime-5;
+			console.log(player.currentTime);
+		}
+		/*function enableControls() { 
+		    var player = document.getElementById("reproductor");
+		    player.controls = true;
+		    player.load();
+		}*/ 
+		
+		function move() {
+		    var elem = document.getElementById("myBar"); 
+		    var width = 1;
+		    var id = setInterval(frame, 10);
+		    function frame() {
+		        if (width >= 100) {
+		            clearInterval(id);
+		        } else {
+		            width++; 
+		            elem.style.width = width + '%'; 
+		        }
+		    }
+		}
+		function cargar(){
+			var barra = document.getElementById("barra");
+			barra.value +=1
+
+		}
+
+	</script>
+	
+</body>
+</html>
